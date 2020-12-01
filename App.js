@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import {StyleSheet,Text,View,TextInput,Button } from 'react-native';
+import {StyleSheet,Text,View,TextInput,Button,ScrollView } from 'react-native';
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState('');
@@ -13,20 +13,25 @@ export default function App() {
   }
   
   return (
-    <View style={styles.screen}>
-      <View style={styles.Container}>
-        <TextInput placeholder="Course Goal"
-          style={styles.input} onChangeText={goalInputHandler}
-          value={enteredGoal}
-        />
-        <Button title="ADD" onPress={addGoalHandler}/>
+      <View style={styles.screen}>
+        <View style={styles.Container}>
+          <TextInput placeholder="Course Goal"
+            style={styles.input} onChangeText={goalInputHandler}
+            value={enteredGoal}
+          />
+          <Button title="ADD" onPress={addGoalHandler}/>
+        </View>
+        <ScrollView>
+          {courseGoals.map((goal) => (
+            <View key={goal} style={styles.listItem}>
+              <Text>{goal}</Text>
+            </View>
+          ))}
+        
+        </ScrollView>
+        <StatusBar style="auto" />
       </View>
-      <View>
-        {courseGoals.map((goal) => <View style={styles.listItem}><Text key={goal}>{goal}</Text></View>)}
-      
-      </View>
-      <StatusBar style="auto" />
-    </View>
+    
   );
 }
 
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
   listItem:{
     padding:10,
     marginVertical:10,
-    backgroundColor:'#ccc',
+    backgroundColor:'#BF5FFF',
     borderColor:'black',
     borderWidth:1,
     borderRadius:10,
