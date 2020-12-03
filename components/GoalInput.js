@@ -4,6 +4,7 @@ import {
     View,
     TextInput,
     Button,
+    Modal
   }from 'react-native';
 
 const GoalInput = (props) => {
@@ -12,13 +13,15 @@ const GoalInput = (props) => {
         setEnteredGoal(enteredText);
       }
     return(
-        <View style={styles.Container}>
-          <TextInput placeholder="Course Goal"
-            style={styles.input} onChangeText={goalInputHandler}
-            value={enteredGoal}
-          />
-          <Button title="ADD" onPress={props.onAddGoal.bind(this,enteredGoal)}/>
-        </View>
+        <Modal visible={false}>
+          <View style={styles.Container}>
+            <TextInput placeholder="Course Goal"
+              style={styles.input} onChangeText={goalInputHandler}
+              value={enteredGoal}
+            />
+            <Button title="ADD" onPress={props.onAddGoal.bind(this,enteredGoal)}/>
+          </View>
+        </Modal>
     )
 
 }
