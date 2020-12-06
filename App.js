@@ -12,14 +12,21 @@ export default function App() {
  
   const [courseGoals, setCourseGoals] = useState([]);
   const [isAddMode, setIsAddMode ] = useState(false);
+  console.log("RE_RENDERING COMPONET");
+  console.log(courseGoals);
   const addGoalHandler = (goalTitle) =>{
     setCourseGoals(currentGoals =>[...currentGoals,{id:Math.random().toString(), value:goalTitle}]);
     setIsAddMode(false);
+    console.log("Goal ADDed in LIST " +goalTitle);
   }
   const removeGoalHandler = goalId =>{
+    console.log(" TO be Deleted :" +goalId);
+    console.log(courseGoals);
     setCourseGoals(currentGoals =>{
+     
       return currentGoals.filter((goal) => goal.id !== goalId)
     })
+    
   }
   const cancelGoalAddHandler = () =>{
     setIsAddMode(false);
